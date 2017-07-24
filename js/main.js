@@ -216,7 +216,7 @@ var dropAreaElement = document.querySelector('.main');
         image.style.opacity = 1;
         imageWidth = image.width;
           
-        dismsg.innerHTML="disp";
+        dismsg.innerHTML="Processing...";
          document.querySelector('.container')
         .appendChild(image);
         canvas.loadImg(image.src, 0, 0, resultWidth, resultHeight).then(process);
@@ -264,6 +264,7 @@ var dropAreaElement = document.querySelector('.main');
     NProgress.set(0.5);
     canvas.setImgData(canny.hysteresis());
      dismsg.innerHTML="Processing...80%";
+     console.log(dismsg.innerHTML);
     NProgress.set(0.55);
     
     contourFinder.init(canvas.getCanvas());
@@ -273,7 +274,7 @@ var dropAreaElement = document.querySelector('.main');
 
 
     drawContours();
-    //dismsg.innerHTML="";
+    
   }
 
   function findOutDirection(point1, point2) {
