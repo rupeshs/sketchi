@@ -229,19 +229,23 @@ var dropAreaElement = document.querySelector('.main');
   function process() {
  NProgress.start() ;
     startTime = Date.now();
-    console.log("grayscale");
+    console.log(canvas.width);
     canvas.setImgData(filters.grayscale());
+     NProgress.set(0.1);
+      // image.src= canvas.getCanvas().toDataURL();
     canvas.setImgData(filters.gaussianBlur(5, 1));
- console.log("gaussianBlur");
+    // image.src= canvas.getCanvas().toDataURL();
+  NProgress.set(0.2);
     canvas.setImgData(canny.gradient('sobel'));
-     console.log("sobel");
-     NProgress.set(0.26);
+    NProgress.set(0.3);
+
     canvas.setImgData(canny.nonMaximumSuppress());
+       NProgress.set(0.4);
     canvas.setImgData(canny.hysteresis());
- console.log("next");
+ NProgress.set(0.45);
     contourFinder.init(canvas.getCanvas());
     contourFinder.findContours();
-     console.log("ok");
+
     NProgress.set(0.5);
    // console.log('contourFinder.allContours.length): ' + contourFinder.allContours.length);
     var secs = (Date.now() - startTime) / 1000;
