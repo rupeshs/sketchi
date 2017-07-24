@@ -1,10 +1,11 @@
+var dismsg;
 $(document).ready(function () {
 
      
 
      NProgress.configure({ showSpinner: false });
      NProgress.configure({ trickle: false });
-
+     dismsg=document.getElementById("stat");
 
 
 var settings = {
@@ -38,7 +39,17 @@ document.getElementById('download').addEventListener('click', function() {
     downloadCanvas(this, scanvas, 'sketch.png');
     
 }, false);
+function blurElement(element, size){
+            var filterVal = 'blur('+size+'px)';
+            $(element)
+              .css('filter',filterVal)
+              .css('webkitFilter',filterVal)
+              .css('mozFilter',filterVal)
+              .css('oFilter',filterVal)
+              .css('msFilter',filterVal);
+        }
 
+   
   function importCanvas(sourceCanvas, targetSVG) {
     // get base64 encoded png data url from Canvas
     var img_dataurl = sourceCanvas.toDataURL("image/png");
@@ -126,9 +137,9 @@ var iFirstPoint = this.getPoint(12, this.points);
 
 var iSecondPoint = this.getPoint(parseInt(settings.SketchStrength/3), this.points);
 ctx.moveTo(iStartPoint[0],iStartPoint[1]);
-ctx.shadowBlur = parseInt(Math.random() * (8 - 1) + 1);
+//ctx.shadowBlur = parseInt(Math.random() * (8 - 1) + 1);
 //console.log(ctx.shadowBlur);
-  ctx.shadowColor = 'rgba(0, 0, 0,0.5)';
+  //ctx.shadowColor = 'rgba(0, 0, 0,0.5)';
 ctx.bezierCurveTo(iFirstPoint[0], iFirstPoint[1], iSecondPoint[0], iSecondPoint[1], x, y);
 ctx.stroke();    
 ctx.closePath();
@@ -180,7 +191,7 @@ var dropAreaElement = document.querySelector('.main');
         ctxt.drawImage(imageTmp,0,0,resultWidth,resultHeight);
         image.src= scanvas.toDataURL();
         delete imageTmp;
-
+        // dismsg.innerHTML="Loading photo...";
         image.onload=function(){
            // delete previous images
       var prev = document.querySelector('.container img');
@@ -194,7 +205,9 @@ var dropAreaElement = document.querySelector('.main');
           polylines[i].parentNode.removeChild(polylines[i]);
         }
       }
+      
        var images = document.querySelectorAll('#svg2 image');
+    
       if (images.length) {
         for (var i = 0; i < images.length; i++) {
           images[i].parentNode.removeChild(images[i]);
@@ -202,8 +215,8 @@ var dropAreaElement = document.querySelector('.main');
       }
         image.style.opacity = 1;
         imageWidth = image.width;
-
-        
+          
+        // dismsg.innerHTML="disp";
          document.querySelector('.container')
         .appendChild(image);
         canvas.loadImg(image.src, 0, 0, resultWidth, resultHeight).then(process);
@@ -214,6 +227,7 @@ var dropAreaElement = document.querySelector('.main');
 
       dropAreaElement.classList.add('dropped');
       contourFinder = new ContourFinder();
+      console.log("first");
       canvas = new Canvas('canvas', resultWidth, resultHeight);
 
       canny = new Canny(canvas);
@@ -227,32 +241,39 @@ var dropAreaElement = document.querySelector('.main');
   imageProvider.init();
 
   function process() {
- NProgress.start() ;
+    console.log("second");
+     NProgress.start() ;
     startTime = Date.now();
-    console.log(canvas.width);
+ 
+    
      NProgress.set(0.1);
+     
+    dismsg.innerHTML="Loading...";
     canvas.setImgData(filters.grayscale());
+     dismsg.innerHTML="Processing...10%";
      NProgress.set(0.2);
-      // image.src= canvas.getCanvas().toDataURL();
     canvas.setImgData(filters.gaussianBlur(5, 1));
-    // image.src= canvas.getCanvas().toDataURL();
-  NProgress.set(0.3);
+     dismsg.innerHTML="Processing...40%";
+    NProgress.set(0.3);
     canvas.setImgData(canny.gradient('sobel'));
+     dismsg.innerHTML="Processing...50%";
     NProgress.set(0.4);
 
     canvas.setImgData(canny.nonMaximumSuppress());
-       NProgress.set(0.5);
+     dismsg.innerHTML="Processing...60%";
+    NProgress.set(0.5);
     canvas.setImgData(canny.hysteresis());
- NProgress.set(0.55);
+     dismsg.innerHTML="Processing...80%";
+    NProgress.set(0.55);
+    
     contourFinder.init(canvas.getCanvas());
     contourFinder.findContours();
-
+     dismsg.innerHTML="Sketching...";
     NProgress.set(0.6);
-   // console.log('contourFinder.allContours.length): ' + contourFinder.allContours.length);
-    var secs = (Date.now() - startTime) / 1000;
-    //console.log('Finding contours took ' + secs + 's');
+
 
     drawContours();
+    //dismsg.innerHTML="";
   }
 
   function findOutDirection(point1, point2) {
@@ -400,6 +421,7 @@ for (var dpts in optimizedPoints) {
       //alert( document.querySelector(scanvas.width));
        document.querySelector('.container img').style.opacity = 0;
       document.querySelector('.container svg').style.opacity = 1;
+    dismsg.innerHTML="";
       NProgress.done();
     }, 2500);
   }
