@@ -68,7 +68,18 @@ path{
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
 }
+#stat{
 
+  background-color: #141a02;
+    padding: 5px 10px;
+    font-size: 14px;
+    border-radius: 3px;
+    color: #fff;
+    position: absolute;
+    z-index: 1000;
+    display: none;
+
+}
 .container {
   position: absolute;
   text-align: center;
