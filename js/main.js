@@ -191,7 +191,7 @@ var dropAreaElement = document.querySelector('.main');
         ctxt.drawImage(imageTmp,0,0,resultWidth,resultHeight);
         image.src= scanvas.toDataURL();
         delete imageTmp;
-        // dismsg.innerHTML="Loading photo...";
+        dismsg.innerHTML="Loading photo...";
         image.onload=function(){
            // delete previous images
       var prev = document.querySelector('.container img');
@@ -216,7 +216,7 @@ var dropAreaElement = document.querySelector('.main');
         image.style.opacity = 1;
         imageWidth = image.width;
           
-        // dismsg.innerHTML="disp";
+        dismsg.innerHTML="disp";
          document.querySelector('.container')
         .appendChild(image);
         canvas.loadImg(image.src, 0, 0, resultWidth, resultHeight).then(process);
