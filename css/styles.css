@@ -1,0 +1,147 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: sans-serif; /* 1 */
+  -ms-text-size-adjust: 100%; /* 2 */
+  -webkit-text-size-adjust: 100%; /* 2 */
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+   font-family: 'Play', sans-serif;
+}
+
+.container {
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+}
+
+body {
+  background-color: white;
+  display: table;
+  margin: 0;
+}
+
+header {
+  background-color: #5f92cb;
+  padding: 5px 10px;
+  font-size: 18px;
+  color: #fff;
+  position: absolute;
+  z-index: 1000;
+}
+
+.main1 {
+  position:relative;
+  width: 50%;
+  left:10%;
+  height: 100px;
+  z-index: 10;
+}
+
+path{
+  -webkit-transition: stroke-dashoffset 2s ease-in-out;
+  transition: stroke-dashoffset 2s ease-in-out;
+}
+
+.main.dropped {
+  opacity: 1;
+}
+
+#droparea {
+  background-color: #ebf5fb;
+  margin: 10px auto;
+  width: 80%;
+  padding: 30px;
+  text-align: center;
+  border: 2px solid #c8cfe8;
+  color: black;
+  border-radius: 5px;
+  border-style: dashed;
+  position: relative;
+ top:40px;;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.container {
+  position: absolute;
+  text-align: center;
+  margin-top:0 auto;
+  width:100%;
+ 
+  
+}
+
+.container svg {
+  transition: opacity 1s ease-in-out;
+  position: absolute;
+  max-width: 100%;
+ 
+ margin: 20px;
+}
+.container canvas{
+  transition: opacity 1s ease-in-out;
+  position: absolute;
+  max-width: 100%;
+   margin: 20px;
+}
+.container img {
+  transition: opacity 1s ease-in-out;
+  max-width: 100%;
+ margin: 20px;
+ 
+}
+
+#image {
+  display: none;
+
+}
+
+#canvas {
+  display: none;
+
+}
+
+/* styles for the resulting svg */
+polyline {
+  stroke:#82a0e8;
+  stroke-width: 2;
+  stroke-linecap: round;
+  opacity: 1;
+  stroke-dashoffset: 0;
+  fill: none;
+}
+
+.btn {
+  background: #3498db;
+  border-radius: 8px;
+  color: #ffffff;
+  font-size: 14px;
+  padding: 10px;
+  text-decoration: none;
+
+}
+
+.btn:hover {
+  background: #3cb0fd;
+  background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+  text-decoration: none;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0px;;
+    right: 10px;
+
+    z-index: 0;
+}
