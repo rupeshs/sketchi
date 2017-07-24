@@ -13,9 +13,6 @@ var settings = {
         SketchStrength:20,
         BrushColor: [ 50,50,50], 
         BackgroundColor: [ 255,255,255]
-        
-        
-        
     };
 
     var gui = new dat.gui.GUI();
@@ -163,8 +160,8 @@ var dropAreaElement = document.querySelector('.main');
        console.log("AR :"+aspectRatio);
        if (imageTmp.width>640)
            {
-             resultWidth=640;
-             resultHeight=640/aspectRatio;
+             resultWidth=320;
+             resultHeight=320/aspectRatio;
            }
         else
           {
@@ -232,17 +229,19 @@ var dropAreaElement = document.querySelector('.main');
   function process() {
  NProgress.start() ;
     startTime = Date.now();
-
+    console.log("grayscale");
     canvas.setImgData(filters.grayscale());
     canvas.setImgData(filters.gaussianBlur(5, 1));
-
+ console.log("gaussianBlur");
     canvas.setImgData(canny.gradient('sobel'));
+     console.log("sobel");
      NProgress.set(0.26);
     canvas.setImgData(canny.nonMaximumSuppress());
     canvas.setImgData(canny.hysteresis());
-
+ console.log("next");
     contourFinder.init(canvas.getCanvas());
     contourFinder.findContours();
+     console.log("ok");
     NProgress.set(0.5);
    // console.log('contourFinder.allContours.length): ' + contourFinder.allContours.length);
     var secs = (Date.now() - startTime) / 1000;
