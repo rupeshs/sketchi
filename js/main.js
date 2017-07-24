@@ -160,8 +160,8 @@ var dropAreaElement = document.querySelector('.main');
        console.log("AR :"+aspectRatio);
        if (imageTmp.width>640)
            {
-             resultWidth=320;
-             resultHeight=320/aspectRatio;
+             resultWidth=640;
+             resultHeight=640/aspectRatio;
            }
         else
           {
