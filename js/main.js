@@ -1,4 +1,7 @@
 var dismsg;
+
+  var image;
+  var gimage;
 $(document).ready(function () {
 
      
@@ -39,17 +42,81 @@ document.getElementById('download').addEventListener('click', function() {
     downloadCanvas(this, scanvas, 'sketch.png');
     
 }, false);
-function blurElement(element, size){
-            var filterVal = 'blur('+size+'px)';
-            $(element)
-              .css('filter',filterVal)
-              .css('webkitFilter',filterVal)
-              .css('mozFilter',filterVal)
-              .css('oFilter',filterVal)
-              .css('msFilter',filterVal);
-        }
 
-   
+document.getElementById('redo').addEventListener('click', function() {
+       sketchi();
+    
+}, false);
+    function sketchi()
+    {
+         var ctxt;
+       //temp img
+       var imageTmp = new Image();
+       imageTmp.id  = 'result';
+       imageTmp.src = gimage.src;
+       imageTmp.onload=function(){
+       
+       var aspectRatio=imageTmp.width/imageTmp.height;
+       console.log("w x h "+imageTmp.width+" "+imageTmp.height);
+       console.log("AR :"+aspectRatio);
+       if (imageTmp.width>640)
+           {
+             resultWidth=640;
+             resultHeight=640/aspectRatio;
+           }
+        else
+          {
+             resultWidth=imageTmp.width;
+             resultHeight=imageTmp.height;
+
+          }
+        
+        console.log("w x h"+resultWidth+" "+resultHeight);
+         
+        scanvas  = document.createElement('canvas');
+        scanvas.id = 'canvas2';
+        scanvas.width = resultWidth;
+        scanvas.height =  resultHeight;
+        ctxt=scanvas.getContext("2d");
+        ctxt.drawImage(imageTmp,0,0,resultWidth,resultHeight);
+        gimage.src= scanvas.toDataURL();
+        delete imageTmp;
+         $("#stat").fadeIn();
+        dismsg.innerHTML="Loading photo...";
+        gimage.onload=function(){
+           // delete previous images
+      var prev = document.querySelector('.container img');
+      if (prev) {
+        prev.parentNode.removeChild(prev);
+       
+      }
+      var polylines = document.querySelectorAll('#svg2 polyline');
+      if (polylines.length) {
+        for (var i = 0; i < polylines.length; i++) {
+          polylines[i].parentNode.removeChild(polylines[i]);
+        }
+      }
+      
+       var images = document.querySelectorAll('#svg2 image');
+    
+      if (images.length) {
+        for (var i = 0; i < images.length; i++) {
+          images[i].parentNode.removeChild(images[i]);
+        }
+      }
+        gimage.style.opacity = 1;
+        imageWidth = gimage.width;
+          
+        dismsg.innerHTML="Processing...";
+         document.querySelector('.container')
+        .appendChild(gimage);
+        canvas.loadImg(gimage.src, 0, 0, resultWidth, resultHeight).then(process);
+
+        }
+    }
+     
+    }
+
   function importCanvas(sourceCanvas, targetSVG) {
     // get base64 encoded png data url from Canvas
     var img_dataurl = sourceCanvas.toDataURL("image/png");
@@ -63,7 +130,7 @@ function blurElement(element, size){
     targetSVG.appendChild(svg_img);
 }
   
-  var image;
+
   var contourFinder;
   var startTime = 0;
   var resultWidth;
@@ -152,79 +219,15 @@ this.iPrevY = y;
 };
    
 
-image = document.getElementById('image');
+
 var dropAreaElement = document.querySelector('.main');
 
   var imageProvider = new ImageProvider({
     element: dropAreaElement,
     onImageRead: function(image) {
-      
-       var ctxt;
-       //temp img
-       var imageTmp = new Image();
-       imageTmp.id  = 'result';
-       imageTmp.src = image.src;
-       imageTmp.onload=function(){
-       
-       var aspectRatio=imageTmp.width/imageTmp.height;
-       console.log("w x h "+imageTmp.width+" "+imageTmp.height);
-       console.log("AR :"+aspectRatio);
-       if (imageTmp.width>640)
-           {
-             resultWidth=640;
-             resultHeight=640/aspectRatio;
-           }
-        else
-          {
-             resultWidth=imageTmp.width;
-             resultHeight=imageTmp.height;
-
-          }
-        
-        console.log("w x h"+resultWidth+" "+resultHeight);
-         
-        scanvas  = document.createElement('canvas');
-        scanvas.id = 'canvas2';
-        scanvas.width = resultWidth;
-        scanvas.height =  resultHeight;
-        ctxt=scanvas.getContext("2d");
-        ctxt.drawImage(imageTmp,0,0,resultWidth,resultHeight);
-        image.src= scanvas.toDataURL();
-        delete imageTmp;
-         $("#stat").fadeIn();
-        dismsg.innerHTML="Loading photo...";
-        image.onload=function(){
-           // delete previous images
-      var prev = document.querySelector('.container img');
-      if (prev) {
-        prev.parentNode.removeChild(prev);
-       
-      }
-      var polylines = document.querySelectorAll('#svg2 polyline');
-      if (polylines.length) {
-        for (var i = 0; i < polylines.length; i++) {
-          polylines[i].parentNode.removeChild(polylines[i]);
-        }
-      }
-      
-       var images = document.querySelectorAll('#svg2 image');
+       gimage=image;
+       sketchi();
     
-      if (images.length) {
-        for (var i = 0; i < images.length; i++) {
-          images[i].parentNode.removeChild(images[i]);
-        }
-      }
-        image.style.opacity = 1;
-        imageWidth = image.width;
-          
-        dismsg.innerHTML="Processing...";
-         document.querySelector('.container')
-        .appendChild(image);
-        canvas.loadImg(image.src, 0, 0, resultWidth, resultHeight).then(process);
-
-        }
-    }
-     
 
       dropAreaElement.classList.add('dropped');
       contourFinder = new ContourFinder();
