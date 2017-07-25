@@ -24,12 +24,25 @@ var settings = {
     //gui.remember(settings);
 
 
-    gui.add(settings, 'Style', [ 'sketch', 'simple' ] );
+    gui.add(settings, 'Style', [ 'sketch', 'simple','chalkboard' ] ).onChange(function(style) {
+  if (style=='chalkboard')
+     {
+        settings.BackgroundColor=[ 50,50,50];
+        settings.BrushColor= [ 200,200,200];
+     }
+      else 
+        {
+       settings.BackgroundColor=[ 255,255,255];
+        settings.BrushColor= [ 50,50,50];
+
+        }
+    
+});;
     gui.add(settings, 'BrushSize').min(0).max(5).step(1);
     gui.add(settings, 'SketchStrength').min(1).max(100).step(1);
     var f1 = gui.addFolder('Colors');
-    f1.addColor(settings, 'BrushColor');
-    f1.addColor(settings, 'BackgroundColor');
+    f1.addColor(settings, 'BrushColor').listen();;
+    f1.addColor(settings, 'BackgroundColor').listen();;
     
 
 
@@ -187,20 +200,25 @@ this.points.push([x, y]);
 ctx.beginPath();
 ctx.moveTo(this.iPrevX, this.iPrevY);
 ctx.lineTo(x, y);
-
+//207,209,206]
 ctx.lineWidth = settings.BrushSize;
 //console.log(parseInt(settings.BrushColor[0])+""+settings.BrushColor[1]+" "+settings.BrushColor[2]);
-ctx.strokeStyle = 'rgba(' + parseInt(settings.BrushColor[0]) + ', ' +parseInt(settings.BrushColor[1]) + ', ' +parseInt(settings.BrushColor[2]) + ', 0.8)';
+if(settings.Style!='simple')
+   ctx.strokeStyle = 'rgba(' + parseInt(settings.BrushColor[0]) + ', ' +parseInt(settings.BrushColor[1]) + ', ' +parseInt(settings.BrushColor[2]) + ', 0.4)';
+else
+   ctx.strokeStyle = 'rgba(' + parseInt(settings.BrushColor[0]) + ', ' +parseInt(settings.BrushColor[1]) + ', ' +parseInt(settings.BrushColor[2]) + ', 1.0)';
+
 ctx.stroke();
 
 ctx.closePath();
 // draw extra strokes
 
-if(settings.Style=='sketch')  
-{ctx.strokeStyle = 'rgba(' + parseInt(settings.BrushColor[0]) + ', ' +parseInt(settings.BrushColor[1]) + ', ' +parseInt(settings.BrushColor[2]) + ', 0.4)';
+if(settings.Style!='simple')  
+{ctx.strokeStyle = 'rgba(' + parseInt(settings.BrushColor[0]) + ', ' +parseInt(settings.BrushColor[1]) + ', ' +parseInt(settings.BrushColor[2]) + ', 0.2)';
 ctx.beginPath();
+ctx.lineWidth =2;
 var iStartPoint = this.getPoint(settings.SketchStrength, this.points);
-var iFirstPoint = this.getPoint(12, this.points);
+var iFirstPoint = this.getPoint(10, this.points);
 
 var iSecondPoint = this.getPoint(parseInt(settings.SketchStrength/3), this.points);
 ctx.moveTo(iStartPoint[0],iStartPoint[1]);
@@ -429,7 +447,7 @@ for (var dpts in optimizedPoints) {
       $("#stat").fadeOut();
   
       NProgress.done();
-    }, 2500);
+    }, 2000);
   }
 
   });
