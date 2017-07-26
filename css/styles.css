@@ -121,7 +121,7 @@ path{
 
 /* styles for the resulting svg */
 polyline {
-  stroke:white;
+  stroke:gray;
   stroke-width: 2;
   stroke-linecap: round;
   opacity: 1;
