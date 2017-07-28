@@ -70,7 +70,7 @@ path{
 }
 #stat{
 
-  background-color: #030c0a;
+  background-color: #d2b526;
     padding: 5px 10px;
     font-size: 14px;
     border-radius: 3px;
@@ -156,3 +156,4 @@ polyline {
 
     z-index: 0;
 }
+  #gui { position: relative; top: 0px; left: 10px }
