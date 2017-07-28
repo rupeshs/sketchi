@@ -1,13 +1,3 @@
-* {
-  box-sizing: border-box;
-}
-
-html {
-  font-family: sans-serif; /* 1 */
-  -ms-text-size-adjust: 100%; /* 2 */
-  -webkit-text-size-adjust: 100%; /* 2 */
-}
-
 html, body {
   width: 100%;
   height: 100%;
@@ -18,6 +8,7 @@ html, body {
   display: table-cell;
   text-align: center;
   vertical-align: middle;
+  margin:30px;
 }
 
 body {
@@ -55,15 +46,15 @@ path{
 #droparea {
   background-color: #ebf5fb;
   margin: 10px auto;
-  width: 80%;
+  width: 50%;
   padding: 30px;
   text-align: center;
-  border: 2px solid #c8cfe8;
+  border: 3px solid #c8cfe8;
   color: black;
   border-radius: 5px;
   border-style: dashed;
   position: relative;
- top:40px;;
+ top:100px;;
   -webkit-transform: translateY(-50%);
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
@@ -129,26 +120,6 @@ polyline {
   fill: none;
 }
 
-.btn {
-  background: #3498db;
-  border-radius: 8px;
-  color: #ffffff;
-  font-size: 14px;
-  padding: 10px;
-  text-decoration: none;
-
-}
-
-.btn:hover {
-  background: #3cb0fd;
-  background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
-  background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
-  background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
-  background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
-  background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
-  text-decoration: none;
-}
-
 .footer {
     position: fixed;
     bottom: 0px;;
@@ -156,4 +127,5 @@ polyline {
 
     z-index: 0;
 }
-  #gui { position: relative; top: 0px; left: 10px }
+  #gui { position: relative; top: 0px; left: 15px }
+ 

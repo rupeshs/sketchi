@@ -389,9 +389,9 @@ $(document).ready(function () {
   NProgress.configure({ trickle: false });
   dismsg = document.getElementById("stat");
 
-  var gui = new dat.gui.GUI();
+  var gui = new dat.gui.GUI({ autoPlace: true });
   gui.domElement.id = 'gui';
- 
+  gui_container.appendChild(gui.domElement);
   gui.add(settings, 'Style', ['sketch', 'simple', 'chalkboard']).onChange(function (style) {
     
     if (style == 'chalkboard') {
@@ -427,7 +427,7 @@ $(document).ready(function () {
     sketchi();
   }, false);
 
-  var dropAreaElement = document.querySelector('.main');
+  var dropAreaElement = document.getElementById("droparea");
   var imageProvider = new ImageProvider({
     element: dropAreaElement,
     
