@@ -9,7 +9,6 @@ var ImageProvider = function (options) {
 
 ImageProvider.prototype.init = function () {
   var element = this._options.element;
-  //alert(element);
   element.addEventListener('drop', this._handleDrop.bind(this), false);
   element.addEventListener('dragover', this._fileDragHover.bind(this), false);
   element.addEventListener('click', function () {

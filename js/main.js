@@ -389,9 +389,9 @@ $(document).ready(function () {
   NProgress.configure({ trickle: false });
   dismsg = document.getElementById("stat");
 
-  var gui = new dat.gui.GUI({ autoPlace: true });
+  var gui = new dat.gui.GUI();
   gui.domElement.id = 'gui';
-  gui_container.appendChild(gui.domElement);
+  dat.GUI.toggleHide();
   gui.add(settings, 'Style', ['sketch', 'simple', 'chalkboard']).onChange(function (style) {
     
     if (style == 'chalkboard') {
@@ -418,7 +418,10 @@ $(document).ready(function () {
     link.href = sourceCanvas.toDataURL();
     link.download = filename;
   }
-
+ document.getElementById('cntrls').addEventListener('click', function () {
+    dat.GUI.toggleHide();
+  }, false);
+  
   document.getElementById('download').addEventListener('click', function () {
     downloadCanvas(this, scanvas, 'sketch.png');
   }, false);
@@ -427,7 +430,7 @@ $(document).ready(function () {
     sketchi();
   }, false);
 
-  var dropAreaElement = document.getElementById("droparea");
+  var dropAreaElement = document.querySelector('.main');
   var imageProvider = new ImageProvider({
     element: dropAreaElement,
     
