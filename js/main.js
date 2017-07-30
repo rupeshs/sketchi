@@ -394,6 +394,8 @@ var isMobile = {
 
 $(document).ready(function () {
   $('.slider').slider({ instructionText:"Click and drag" });
+  var result = browser();
+alert(result.name);
  if (!isChrome)
   {
     $("#droparea").css("background-color", "#fbbdaf");
