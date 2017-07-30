@@ -115,8 +115,13 @@ if (browser.name!="chrome")
    alert("Use Google chrome to use Sketchi ");
    return;
   }
+  if (typeof gimage == 'undefined')
+  {
+    alert("Please select a photo.");
+    return;
+  }
     $("#gui").fadeOut();
-    $("#cmdiv").hide();
+    
     $("#stat").fadeIn();
     $("#stat").html("Loading photo...");
     var ctxt;
@@ -453,12 +458,13 @@ $(document).ready(function () {
   document.getElementById('redo').addEventListener('click', function () {
     sketchi();
   }, false);
-
+  
   var dropAreaElement = document.querySelector('.dp');
   var imageProvider = new ImageProvider({
     element: dropAreaElement,
     
     onImageRead: function (image) {
+      $("#cmdiv").hide();
       gimage = image;
       sketchi();
 
