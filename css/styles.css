@@ -170,7 +170,6 @@ polyline {
   
   #gui{
     position: fixed;
- 
     z-index: 1500;
     margin:0 auto;
     left:50%;

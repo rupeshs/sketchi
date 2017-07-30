@@ -115,7 +115,7 @@ if (browser.name!="chrome")
    alert("Use Google chrome to use Sketchi ");
    return;
   }
-    $(".slider").hide();
+    $("#cmdiv").hide();
     $("#stat").fadeIn();
     $("#stat").html("Loading photo...");
     var ctxt;
