@@ -10,6 +10,7 @@ var resultHeight;
 var imageWidth;
 var imageHeight;
 var scanvas;
+var browser;
 var filters, canny, canvas;
 var settings = {
     Style: 'sketch',
@@ -97,7 +98,7 @@ var settings = {
       }
     }
   }; 
-var isChrome = !!window.chrome && !!window.chrome.webstore;
+
 function importCanvas(sourceCanvas, targetSVG) {
     var img_dataurl = sourceCanvas.toDataURL("image/png");
 
@@ -109,7 +110,7 @@ function importCanvas(sourceCanvas, targetSVG) {
     targetSVG.appendChild(svg_img);
 }
  function sketchi() {
-  if (!isChrome)
+if (browser.name!="chrome")
   {
    alert("Use Google chrome to use Sketchi ");
    return;
@@ -394,9 +395,9 @@ var isMobile = {
 
 $(document).ready(function () {
   $('.slider').slider({ instructionText:"Click and drag" });
-  var result = browser();
-alert(result.name);
- if (!isChrome)
+  browser = browser();
+
+ if (browser.name!="chrome")
   {
     $("#droparea").css("background-color", "#fbbdaf");
     $("#droparea").html("Use Google chrome to use Sketchi");
