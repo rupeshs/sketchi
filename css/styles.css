@@ -77,15 +77,16 @@ path{
 }
 #stat{
 
-  background-color: #daa434;
+    background-color: #e1992d;
     padding: 5px 10px;
     font-size: 14px;
+    width :100px;
     border-radius: 3px;
     color: #fff;
-    position:absolute;
     z-index: 1000;
     display: none;
-    
+    top:50px;
+    margin:auto;
    
 
 }
@@ -176,9 +177,6 @@ polyline {
     top:50%;
      margin-top: -10%; /* Changes with height. */
     margin-left: -10%; /* Your width divided by 2. */
-
-   
-    
 }​
   .mdl-button{
 font-family: 'Play', sans-serif;
