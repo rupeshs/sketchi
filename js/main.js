@@ -115,6 +115,7 @@ if (browser.name!="chrome")
    alert("Use Google chrome to use Sketchi ");
    return;
   }
+    $("#gui").fadeOut();
     $("#cmdiv").hide();
     $("#stat").fadeIn();
     $("#stat").html("Loading photo...");
@@ -340,7 +341,7 @@ function drawContour(index) {
       document.querySelector('.container svg').style.opacity = 1;
       $( "#redo" ).removeClass( "loading" );
       $("#stat").fadeOut();
-
+      
       NProgress.done();
     }, 2000);
   }
