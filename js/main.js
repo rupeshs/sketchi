@@ -143,6 +143,7 @@ function importCanvas(sourceCanvas, targetSVG) {
       
      
       gimage.onload = function () {
+        $( "#redo" ).addClass( "loading" );
         // delete previous images
         var prev = document.querySelector('.container img');
         if (prev) {
@@ -328,7 +329,7 @@ function drawContour(index) {
      
       document.querySelector('.container img').style.opacity = 0;
       document.querySelector('.container svg').style.opacity = 1;
-      
+      $( "#redo" ).removeClass( "loading" );
       $("#stat").fadeOut();
 
       NProgress.done();
@@ -391,6 +392,7 @@ $(document).ready(function () {
 
   var gui = new dat.gui.GUI();
   gui.domElement.id = 'gui';
+  gui_container.appendChild(gui.domElement);
   dat.GUI.toggleHide();
   gui.add(settings, 'Style', ['sketch', 'simple', 'chalkboard']).onChange(function (style) {
     
@@ -417,12 +419,14 @@ $(document).ready(function () {
   function downloadCanvas(link, sourceCanvas, filename) {
     link.href = sourceCanvas.toDataURL();
     link.download = filename;
+   
   }
  document.getElementById('cntrls').addEventListener('click', function () {
     dat.GUI.toggleHide();
   }, false);
   
   document.getElementById('download').addEventListener('click', function () {
+   
     downloadCanvas(this, scanvas, 'sketch.png');
   }, false);
   

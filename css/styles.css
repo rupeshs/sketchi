@@ -174,8 +174,20 @@ polyline {
     z-index:1000;
 
 }
-  #gui { position: relative; top: 0px; left: 10px }
+  
+  #gui{
+    position: fixed;
+ 
+    z-index: 1500;
+    margin:0 auto;
+    left:50%;
+    top:50%;
+     margin-top: -10%; /* Changes with height. */
+    margin-left: -10%; /* Your width divided by 2. */
 
+   
+    
+}​
   .mdl-button{
 font-family: 'Play', sans-serif;
 

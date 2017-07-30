@@ -10,14 +10,13 @@
   <meta name=viewport content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <link rel="stylesheet" href="css/styles.css" />
   <link rel="stylesheet" href="css/nprogress.css">
-  <link rel="stylesheet" href="css/icon.css">
-<link rel="stylesheet" href="css/material.deep_purple-blue.min.css" />
-<link href='https://fonts.googleapis.com/css?family=Play' rel='stylesheet' type='text/css'>
-
-
+  <link rel="stylesheet" href="css/fa.min.css">
+  <link rel="stylesheet" href="css/button.css" >
+  <link href='https://fonts.googleapis.com/css?family=Play' rel='stylesheet' type='text/css'>
 </head>
 <body>
   <div class="main">
+    <div  id="gui_container"></div>
     <header>Sketchi</header>
    
     <div id="droparea">Click,tap or drop image to start sketching</div>
@@ -25,9 +24,21 @@
     <div id="stat"> </div>
   </div>
   <div class="container">
-    <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" id="redo" href="#"><i class="material-icons">create</i>Sketch</a>
-    <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" id="download" href="#"><i class="material-icons">get_app</i> Download</a>
-       <a id="cntrls" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" id="download" href="#"><i class="material-icons">settings</i> </a>
+    
+<div id="redo" class="ui animated green button" tabindex="0">
+  <div  class="visible content"  style=" font-family: 'Play', sans-serif;">Create</div>
+  <div class="hidden content">
+    <i  class="fa fa-pencil" aria-hidden="true"></i>
+  </div>
+</div>   
+
+<a id="download"  href="#"  class="ui animated blue button" tabindex="1"  style=" font-family: 'Play', sans-serif;">
+  <div class="visible content"  >Download</div>
+  <div class="hidden content">
+    <i  class="fa fa-download" aria-hidden="true"></i>
+  </div>
+</a>  
+       <a id="cntrls" class="ui violet button" id="download" href="#"><i class="fa fa-cog" aria-hidden="true"></i> </a>
     <br/>
     <svg id="svg2" style="opacity:0"></svg>
   </div>
@@ -50,7 +61,7 @@
   <script src="js/main.js"></script>
   <script src="js/dat.gui.js"></script>
   <script src="js/nprogress.js"></script>
-<script defer src="js/material.min.js"></script>
+
   
   <script>
     (function (i, s, o, g, r, a, m) {
