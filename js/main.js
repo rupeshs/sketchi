@@ -8,6 +8,7 @@ var startTime = 0;
 var resultWidth;
 var resultHeight;
 var imageWidth;
+var imageHeight;
 var scanvas;
 var filters, canny, canvas;
 var settings = {
@@ -96,6 +97,7 @@ var settings = {
       }
     }
   }; 
+var isChrome = !!window.chrome && !!window.chrome.webstore;
 function importCanvas(sourceCanvas, targetSVG) {
     var img_dataurl = sourceCanvas.toDataURL("image/png");
 
@@ -104,11 +106,15 @@ function importCanvas(sourceCanvas, targetSVG) {
 
     svg_img.setAttributeNS(
       "http://www.w3.org/1999/xlink", "xlink:href", img_dataurl);
-
     targetSVG.appendChild(svg_img);
 }
  function sketchi() {
-    
+  if (!isChrome)
+  {
+   alert("Use Google chrome to use Sketchi ");
+   return;
+  }
+    $(".slider").hide();
     $("#stat").fadeIn();
     $("#stat").html("Loading photo...");
     var ctxt;
@@ -166,6 +172,7 @@ function importCanvas(sourceCanvas, targetSVG) {
         }
         gimage.style.opacity = 1;
         imageWidth = gimage.width;
+        imageHeight = gimage.height;
          $("#stat").html("Processing...");
         
         document.querySelector('.container')
@@ -288,6 +295,7 @@ function drawContour(index) {
     svg.appendChild(polyline);
     svg.setAttribute('viewBox', '0 0 ' + resultWidth + ' ' + resultHeight);
     svg.setAttribute('style', 'width:' + imageWidth + 'px');
+     
   }
 
   function animate() {
@@ -326,7 +334,7 @@ function drawContour(index) {
       }
 
       importCanvas(scanvas, svg);
-     
+  
       document.querySelector('.container img').style.opacity = 0;
       document.querySelector('.container svg').style.opacity = 1;
       $( "#redo" ).removeClass( "loading" );
@@ -385,7 +393,15 @@ var isMobile = {
 }
 
 $(document).ready(function () {
- 
+  $('.slider').slider({ instructionText:"Click and drag" });
+ if (!isChrome)
+  {
+    $("#droparea").css("background-color", "#fbbdaf");
+    $("#droparea").html("Use Google chrome to use Sketchi");
+   alert("Use Google chrome to use Sketchi ");
+   
+  }
+
   NProgress.configure({ showSpinner: false });
   NProgress.configure({ trickle: false });
   dismsg = document.getElementById("stat");
@@ -434,7 +450,7 @@ $(document).ready(function () {
     sketchi();
   }, false);
 
-  var dropAreaElement = document.querySelector('.main');
+  var dropAreaElement = document.querySelector('.dp');
   var imageProvider = new ImageProvider({
     element: dropAreaElement,
     

@@ -32,23 +32,17 @@ body {
 }
 
 header {
-  background-color: #5f92cb;
+  background-color: #4090ea;
   padding: 5px 10px;
   font-size: 18px;
   color: #fff;
   position: fixed;
   z-index: 1000;
-      top: 0px;
-       font-family: 'Play', sans-serif;
+  top: 0px;
+  font-family: 'Play', sans-serif;
 }
 
-.main1 {
-  position:relative;
-  width: 50%;
-  left:10%;
-  height: 100px;
-  z-index: 10;
-}
+
 
 path{
   -webkit-transition: stroke-dashoffset 2s ease-in-out;
@@ -108,7 +102,6 @@ path{
   transition: opacity 1s ease-in-out;
   position: absolute;
   max-width: 100%;
- 
  margin: 20px;
 }
 .container canvas{

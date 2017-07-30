@@ -4,7 +4,7 @@ var ImageProvider = function (options) {
   this._fileSelect.setAttribute('type', 'file');
   this._fileSelect.style.display = 'none';
 
-  document.querySelector('.main').appendChild(this._fileSelect);
+  document.querySelector('.dp').appendChild(this._fileSelect);
 };
 
 ImageProvider.prototype.init = function () {

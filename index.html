@@ -11,45 +11,55 @@
   <link rel="stylesheet" href="css/styles.css" />
   <link rel="stylesheet" href="css/nprogress.css">
   <link rel="stylesheet" href="css/fa.min.css">
-  <link rel="stylesheet" href="css/button.css" >
+  <link rel="stylesheet" href="css/button.css">
+  	<link rel="stylesheet" href="css/imgslider-2.0.1-min.css">
+  <meta property="og:title" content="Sketchi"/>
+  <meta property="og:site_name" content="Sketchi | Photo to Sketch converter"/>
+  <meta property="og:description" content="Photo to Sketch converter"/>
+  <meta property="og:image" content="https://rupeshs.github.io/sketchi/img/og_image.png"/>
   <link href='https://fonts.googleapis.com/css?family=Play' rel='stylesheet' type='text/css'>
 </head>
 <body>
+  <div class="slider" >
+  <div class="left image">
+    <img src="img/cern.jpg"/>
+  </div>
+<div class="right image">
+    <img src="img/sketch.jpg"/>
+  </div>
+  <small>Click and drag above split line</small>
+ </div> 
   <div class="main">
-    <div  id="gui_container"></div>
+    <div id="gui_container"></div>
     <header>Sketchi</header>
-   
-    <div id="droparea">Click,tap or drop image to start sketching</div>
+    <div id="droparea" class="dp">Click,tap or drop image to start sketching</div>
     <br/>
     <div id="stat"> </div>
   </div>
   <div class="container">
-    
-<div id="redo" class="ui animated green button" tabindex="0">
-  <div  class="visible content"  style=" font-family: 'Play', sans-serif;">Create</div>
-  <div class="hidden content">
-    <i  class="fa fa-pencil" aria-hidden="true"></i>
-  </div>
-</div>   
-
-<a id="download"  href="#"  class="ui animated blue button" tabindex="1"  style=" font-family: 'Play', sans-serif;">
-  <div class="visible content"  >Download</div>
-  <div class="hidden content">
-    <i  class="fa fa-download" aria-hidden="true"></i>
-  </div>
-</a>  
-       <a id="cntrls" class="ui violet button" id="download" href="#"><i class="fa fa-cog" aria-hidden="true"></i> </a>
+    <div id="redo" class="ui animated green button" tabindex="0">
+      <div class="visible content" style=" font-family: 'Play', sans-serif;">Create</div>
+      <div class="hidden content">
+        <i class="fa fa-pencil" aria-hidden="true"></i>
+      </div>
+    </div>
+    <a id="download" href="#" class="ui vertical animated blue button" tabindex="1" style=" font-family: 'Play', sans-serif;">
+      <div class="visible content">Download</div>
+      <div class="hidden content">
+        <i class="fa fa-download" aria-hidden="true"></i>
+      </div>
+    </a>
+    <a id="cntrls" class="ui violet button" id="download" href="#"><i class="fa fa-cog" aria-hidden="true"></i> </a>
     <br/>
     <svg id="svg2" style="opacity:0"></svg>
   </div>
   <div class="footer">
     <div style="margin:5px;">© 2017<a href="https://github.com/rupeshs"> Rupesh Sreeraman</a></div>
-   
-    </div>
-   <div style="float:left;bottom:5px;left:10px;position:fixed;">
+  </div>
+  <div style="float:left;bottom:5px;left:10px;position:fixed;">
     <iframe src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Frupeshs.github.io%2Fsketchi%2F&width=106&layout=button_count&action=like&size=small&show_faces=false&share=true&height=25&appId=1499988016887461"
       width="106" height="25" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
-   </div>
+  </div>
   <script src="js/pixel.js"></script>
   <script src="js/filters.js"></script>
   <script src="js/canny.js"></script>
@@ -61,20 +71,21 @@
   <script src="js/main.js"></script>
   <script src="js/dat.gui.js"></script>
   <script src="js/nprogress.js"></script>
-
-  
+  <script src="js/imgslider-2.0.1-min.js"></script>
   <script>
     (function (i, s, o, g, r, a, m) {
-    i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
-      (i[r].q = i[r].q || []).push(arguments)
-    }, i[r].l = 1 * new Date(); a = s.createElement(o),
-      m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+      i['GoogleAnalyticsObject'] = r;
+      i[r] = i[r] || function () {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date();
+      a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0];
+      a.async = 1;
+      a.src = g;
+      m.parentNode.insertBefore(a, m)
     })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
-
     ga('create', 'UA-20629378-15', 'auto');
     ga('send', 'pageview');
-
   </script>
 </body>
-
 </html>

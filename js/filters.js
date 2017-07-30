@@ -8,7 +8,7 @@
   };
 
   var generateKernel = function(sigma, size){
-    console.log("size)"+size);
+    
     var kernel = [];
     var E = 2.718;//Euler's number rounded of to 3 places
     for (var y = -(size - 1)/2, i = 0; i < size; y++, i++) {
